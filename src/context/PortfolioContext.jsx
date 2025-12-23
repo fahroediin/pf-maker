@@ -6,23 +6,20 @@ export const PortfolioProvider = ({ children }) => {
   const [config, setConfig] = useState({
     name: 'Fahrudin',
     role: 'Fullstack Developer',
-    bio: 'Saya seorang pengembang yang berfokus pada solusi modern.',
-    email: 'hello@fahrudin.dev',
     primaryColor: '#3b82f6',
     darkMode: false,
     templateId: 'modern',
     fontFamily: 'Inter',
     baseFontSize: 16,
     experiences: [
-      { id: 1, company: 'Tech Corp', role: 'Senior Dev', dates: '2022 - Now', desc: 'Membangun arsitektur microservices.' }
+      { id: 1, company: 'Tech Corp', role: 'Senior Dev', dates: '2022 - Now', desc: 'Membangun arsitektur microservices modern.' }
     ],
     education: [
       { id: 1, school: 'Universitas Indonesia', degree: 'S1 Teknik Informatika', dates: '2018 - 2022' }
     ],
     projects: [
-      { id: 1, title: 'E-Commerce App', link: 'https://github.com', desc: 'Membangun platform belanja online dengan fitur payment gateway.' }
-    ],
-    skills: ['React', 'Node.js', 'Tailwind CSS']
+      { id: 1, title: 'E-Commerce App', link: 'https://github.com', desc: 'Platform belanja online dengan fitur payment gateway.' }
+    ]
   });
 
   const updateConfig = (key, value) => setConfig(prev => ({ ...prev, [key]: value }));
