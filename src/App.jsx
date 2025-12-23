@@ -16,10 +16,9 @@ const Preview = () => {
     }
   };
 
-  // Gaya Font Dinamis (Akar dari Scaling)
   const fontStyle = {
     fontFamily: `'${config.fontFamily}', sans-serif`,
-    fontSize: `${config.baseFontSize}px`, // Semua 'em' merujuk ke sini
+    fontSize: `${config.baseFontSize}px`,
     lineHeight: '1.5'
   };
 
@@ -28,10 +27,10 @@ const Preview = () => {
       <link rel="stylesheet" href={`https://fonts.googleapis.com/css2?family=${config.fontFamily.replace(' ', '+')}:wght@300;400;700;900&display=swap`} />
       
       <div 
-        className={`w-full max-w-4xl shadow-2xl rounded-2xl overflow-hidden transition-all duration-300 ${config.darkMode ? 'dark' : ''}`}
+        className={`w-full max-w-5xl shadow-2xl rounded-3xl overflow-hidden transition-all duration-300 ${config.darkMode ? 'dark' : ''}`}
         style={fontStyle}
       >
-        <div className="bg-white dark:bg-gray-900 min-h-[80vh]">
+        <div className="bg-white dark:bg-gray-900 min-h-[85vh] flex flex-col">
           {renderTemplate()}
         </div>
       </div>
@@ -42,7 +41,7 @@ const Preview = () => {
 export default function App() {
   return (
     <PortfolioProvider>
-      <div className="flex flex-col md:flex-row h-screen bg-white">
+      <div className="flex flex-col md:flex-row h-screen bg-white overflow-hidden">
         <Editor />
         <Preview />
       </div>
