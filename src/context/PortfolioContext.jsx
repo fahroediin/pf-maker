@@ -14,18 +14,19 @@ export const PortfolioProvider = ({ children }) => {
     fontFamily: 'Inter',
     baseFontSize: 16,
     experiences: [
-      { id: 1, company: 'Tech Corp', role: 'Senior Dev', dates: 'Jan 2022 - Now', desc: 'Membangun arsitektur microservices.' }
+      { id: 1, company: 'Tech Corp', role: 'Senior Dev', dates: '2022 - Now', desc: 'Membangun arsitektur microservices.' }
     ],
     education: [
       { id: 1, school: 'Universitas Indonesia', degree: 'S1 Teknik Informatika', dates: '2018 - 2022' }
+    ],
+    projects: [
+      { id: 1, title: 'E-Commerce App', link: 'https://github.com', desc: 'Membangun platform belanja online dengan fitur payment gateway.' }
     ],
     skills: ['React', 'Node.js', 'Tailwind CSS']
   });
 
   const updateConfig = (key, value) => setConfig(prev => ({ ...prev, [key]: value }));
-
   const addItem = (key, item) => setConfig(prev => ({ ...prev, [key]: [...prev[key], item] }));
-  
   const removeItem = (key, id) => setConfig(prev => ({ ...prev, [key]: prev[key].filter(i => i.id !== id) }));
 
   return (
