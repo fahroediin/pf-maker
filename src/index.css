@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Ini memberitahu Tailwind v4 untuk menggunakan class "dark" sebagai pemicu dark mode */
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
