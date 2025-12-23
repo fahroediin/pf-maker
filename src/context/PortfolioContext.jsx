@@ -11,8 +11,10 @@ export const PortfolioProvider = ({ children }) => {
     primaryColor: '#3b82f6',
     darkMode: false,
     templateId: 'modern',
+    fontFamily: 'Inter',
+    baseFontSize: 16,
     experiences: [
-      { id: 1, company: 'Tech Corp', role: 'Senior Dev', dates: '2022 - Now', desc: 'Membangun sistem skala besar.' }
+      { id: 1, company: 'Tech Corp', role: 'Senior Dev', dates: 'Jan 2022 - Now', desc: 'Membangun arsitektur microservices.' }
     ],
     education: [
       { id: 1, school: 'Universitas Indonesia', degree: 'S1 Teknik Informatika', dates: '2018 - 2022' }
@@ -22,8 +24,8 @@ export const PortfolioProvider = ({ children }) => {
 
   const updateConfig = (key, value) => setConfig(prev => ({ ...prev, [key]: value }));
 
-  // Helper untuk menambah/menghapus item list
   const addItem = (key, item) => setConfig(prev => ({ ...prev, [key]: [...prev[key], item] }));
+  
   const removeItem = (key, id) => setConfig(prev => ({ ...prev, [key]: prev[key].filter(i => i.id !== id) }));
 
   return (

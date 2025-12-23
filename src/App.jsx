@@ -16,14 +16,28 @@ const Preview = () => {
     }
   };
 
+  const fontStyle = {
+    fontFamily: `'${config.fontFamily}', sans-serif`,
+    fontSize: `${config.baseFontSize}px`,
+  };
+
   return (
     <div className="flex-1 h-screen bg-gray-200 overflow-y-auto p-4 md:p-10 flex justify-center items-start">
-      <div className={`w-full max-w-4xl shadow-2xl rounded-2xl overflow-hidden ${config.darkMode ? 'dark' : ''}`}>
-        {renderTemplate()}
+      {/* Dynamic Google Font Loader */}
+      <link rel="stylesheet" href={`https://fonts.googleapis.com/css2?family=${config.fontFamily.replace(' ', '+')}:wght@300;400;700;900&display=swap`} />
+      
+      <div 
+        className={`w-full max-w-4xl shadow-2xl rounded-2xl overflow-hidden transition-all duration-300 ${config.darkMode ? 'dark' : ''}`}
+        style={fontStyle}
+      >
+        <div className="bg-white dark:bg-gray-900 min-h-[80vh]">
+          {renderTemplate()}
+        </div>
       </div>
     </div>
   );
 };
+
 export default function App() {
   return (
     <PortfolioProvider>
