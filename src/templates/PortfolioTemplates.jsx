@@ -60,48 +60,78 @@ export const ModernTemplate = ({ config }) => (
   </div>
 );
 
-// --- 2. CREATIVE SIDE ---
+// --- 2. CREATIVE SIDE (Layout: Sidebar with Large Color Block) ---
 export const CreativeTemplate = ({ config }) => (
-  <div className="min-h-full bg-stone-100 dark:bg-zinc-950 p-4 md:p-8 flex items-stretch transition-colors duration-500">
-    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full font-sans">
-      
-      {/* Sidebar Card */}
-      <div className="md:col-span-4 p-10 rounded-[2.5rem] text-white flex flex-col justify-end shadow-2xl overflow-hidden relative" style={{ backgroundColor: config.primaryColor }}>
-        <div className="relative z-10">
-            <h1 className="font-black leading-none mb-6 italic" style={{ fontSize: '4.5em' }}>{config.name}</h1>
-            <p className="font-bold uppercase tracking-[0.3em] opacity-80" style={{ fontSize: '1em' }}>{config.role}</p>
-        </div>
-        <div className="absolute top-[-10%] right-[-10%] w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+  // Gunakan h-full dan items-stretch agar sidebar warna biru mencapai bawah
+  <div className="h-full min-h-[85vh] bg-stone-100 dark:bg-zinc-950 flex flex-col md:flex-row items-stretch transition-colors duration-500">
+    
+    {/* Sidebar Card - Kotak Biru */}
+    <div 
+      className="w-full md:w-1/3 p-10 flex flex-col justify-end text-white relative overflow-hidden" 
+      style={{ backgroundColor: config.primaryColor }}
+    >
+      <div className="relative z-10">
+          <h1 className="font-black leading-none mb-6 italic tracking-tighter" style={{ fontSize: '4.5em' }}>
+            {config.name}
+          </h1>
+          <p className="font-bold uppercase tracking-[0.3em] opacity-80" style={{ fontSize: '1em' }}>
+            {config.role}
+          </p>
       </div>
+      {/* Abstract background blur */}
+      <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+    </div>
+    
+    {/* Main Content Area */}
+    <div className="w-full md:w-2/3 p-6 md:p-12 space-y-10 overflow-y-auto">
       
-      {/* Main Content */}
-      <div className="md:col-span-8 space-y-6">
-        <div className="bg-white dark:bg-zinc-900 p-10 rounded-[2.5rem] shadow-sm transition-colors">
-          <SectionTitle color={config.primaryColor}>My Journey</SectionTitle>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {config.experiences.map(exp => (
-              <div key={exp.id} className="group">
-                <div className="w-10 h-1 mb-4 opacity-20 group-hover:opacity-100 transition-all" style={{ backgroundColor: config.primaryColor }}></div>
-                <h4 className="font-black dark:text-white" style={{ fontSize: '1.1em' }}>{exp.company}</h4>
-                <p className="opacity-50 font-bold mb-2 uppercase" style={{ fontSize: '0.7em' }}>{exp.dates}</p>
-                <p className="opacity-70 italic dark:text-gray-300" style={{ fontSize: '0.85em' }}>"{exp.desc}"</p>
+      {/* Experience Section */}
+      <div className="bg-white dark:bg-zinc-900 p-8 md:p-10 rounded-[2.5rem] shadow-sm">
+        <SectionTitle color={config.primaryColor}>Journey</SectionTitle>
+        <div className="space-y-10">
+          {config.experiences.map(exp => (
+            <div key={exp.id} className="group">
+              <div className="flex justify-between items-start mb-2">
+                <h4 className="font-black dark:text-white" style={{ fontSize: '1.2em' }}>{exp.company}</h4>
+                <span className="opacity-40 font-bold" style={{ fontSize: '0.8em' }}>{exp.dates}</span>
               </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-zinc-900 p-10 rounded-[2.5rem] shadow-sm transition-colors">
-          <SectionTitle color={config.primaryColor}>Selected Works</SectionTitle>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {config.projects.map(proj => (
-                <div key={proj.id} className="p-6 border-2 rounded-3xl border-dashed dark:border-zinc-700" style={{ borderColor: `${config.primaryColor}44` }}>
-                    <h4 className="font-black mb-2 uppercase dark:text-white" style={{ fontSize: '0.9em' }}>{proj.title}</h4>
-                    <p className="opacity-60 dark:text-gray-400" style={{ fontSize: '0.8em' }}>{proj.desc}</p>
-                </div>
-            ))}
-          </div>
+              <p className="font-bold opacity-60 mb-3" style={{ color: config.primaryColor, fontSize: '0.9em' }}>{exp.role}</p>
+              <p className="opacity-70 dark:text-gray-300 leading-relaxed" style={{ fontSize: '0.9em' }}>{exp.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
+
+      {/* Projects Section */}
+      <div className="bg-white dark:bg-zinc-900 p-8 md:p-10 rounded-[2.5rem] shadow-sm">
+        <SectionTitle color={config.primaryColor}>Works</SectionTitle>
+        <div className="grid grid-cols-1 gap-4">
+          {config.projects.map(proj => (
+              <div key={proj.id} className="p-6 border-2 border-dashed rounded-3xl dark:border-zinc-800" style={{ borderColor: `${config.primaryColor}33` }}>
+                  <h4 className="font-black mb-2 uppercase dark:text-white" style={{ fontSize: '1em' }}>{proj.title}</h4>
+                  <p className="opacity-60 dark:text-gray-400 mb-4" style={{ fontSize: '0.85em' }}>{proj.desc}</p>
+                  {proj.link && (
+                    <a href={proj.link} target="_blank" className="text-[0.7em] font-black underline flex items-center gap-1" style={{ color: config.primaryColor }}>
+                      VIEW PROJECT 🔗
+                    </a>
+                  )}
+              </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Education Section */}
+      {config.education.length > 0 && (
+        <div className="bg-white dark:bg-zinc-900 p-8 md:p-10 rounded-[2.5rem] shadow-sm">
+          <SectionTitle color={config.primaryColor}>Education</SectionTitle>
+          {config.education.map(edu => (
+            <div key={edu.id} className="mb-4">
+              <h4 className="font-bold dark:text-white" style={{ fontSize: '1.1em' }}>{edu.school}</h4>
+              <p className="opacity-60 dark:text-gray-400" style={{ fontSize: '0.9em' }}>{edu.degree} • {edu.dates}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   </div>
 );

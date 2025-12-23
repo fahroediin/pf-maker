@@ -1,7 +1,7 @@
 import React from 'react';
 import { PortfolioProvider, usePortfolio } from './context/PortfolioContext';
 import Editor from './components/Editor';
-import { ModernTemplate, ClassicTemplate, TerminalTemplate } from './templates/PortfolioTemplates';
+import { ModernTemplate, ClassicTemplate, CreativeTemplate, TerminalTemplate } from './templates/PortfolioTemplates';
 
 const Preview = () => {
   const { config } = usePortfolio();
@@ -10,6 +10,7 @@ const Preview = () => {
     switch(config.templateId) {
       case 'modern': return <ModernTemplate config={config} />;
       case 'classic': return <ClassicTemplate config={config} />;
+      case 'creative': return <CreativeTemplate config={config} />;
       case 'terminal': return <TerminalTemplate config={config} />;
       default: return <ModernTemplate config={config} />;
     }
