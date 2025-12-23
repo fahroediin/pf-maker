@@ -1,7 +1,7 @@
 import React from 'react';
 import { PortfolioProvider, usePortfolio } from './context/PortfolioContext';
 import Editor from './components/Editor';
-import { ModernTemplate, ClassicTemplate, CreativeTemplate, TerminalTemplate } from './templates/PortfolioTemplates';
+import { ModernTemplate, ClassicTemplate, TerminalTemplate } from './templates/PortfolioTemplates';
 
 const Preview = () => {
   const { config } = usePortfolio();
@@ -10,20 +10,20 @@ const Preview = () => {
     switch(config.templateId) {
       case 'modern': return <ModernTemplate config={config} />;
       case 'classic': return <ClassicTemplate config={config} />;
-      case 'creative': return <CreativeTemplate config={config} />;
       case 'terminal': return <TerminalTemplate config={config} />;
       default: return <ModernTemplate config={config} />;
     }
   };
 
+  // Gaya Font Dinamis (Akar dari Scaling)
   const fontStyle = {
     fontFamily: `'${config.fontFamily}', sans-serif`,
-    fontSize: `${config.baseFontSize}px`,
+    fontSize: `${config.baseFontSize}px`, // Semua 'em' merujuk ke sini
+    lineHeight: '1.5'
   };
 
   return (
     <div className="flex-1 h-screen bg-gray-200 overflow-y-auto p-4 md:p-10 flex justify-center items-start">
-      {/* Dynamic Google Font Loader */}
       <link rel="stylesheet" href={`https://fonts.googleapis.com/css2?family=${config.fontFamily.replace(' ', '+')}:wght@300;400;700;900&display=swap`} />
       
       <div 

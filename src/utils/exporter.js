@@ -6,15 +6,12 @@ export const exportProject = (config) => {
 
   const expHTML = config.experiences.map(exp => `
     <div class="item">
-        <div class="header"><strong>${exp.company}</strong><span>${exp.dates}</span></div>
-        <div class="role" style="color: var(--primary)">${exp.role}</div>
-        <p>${exp.desc}</p>
-    </div>`).join('');
-
-  const eduHTML = config.education.map(edu => `
-    <div class="item">
-        <div class="header"><strong>${edu.school}</strong><span>${edu.dates}</span></div>
-        <div class="role">${edu.degree}</div>
+        <div class="header">
+            <span class="comp">${exp.company}</span>
+            <span class="date">${exp.dates}</span>
+        </div>
+        <div class="role">${exp.role}</div>
+        <p class="desc">${exp.desc}</p>
     </div>`).join('');
 
   const htmlContent = `
@@ -23,34 +20,45 @@ export const exportProject = (config) => {
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${config.name} - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=${config.fontFamily.replace(' ', '+')}:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=${config.fontFamily.replace(' ', '+')}:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root { --primary: ${config.primaryColor}; }
-        body { font-family: '${config.fontFamily}', sans-serif; font-size: ${config.baseFontSize}px; }
+        body { 
+            font-family: '${config.fontFamily}', sans-serif; 
+            font-size: ${config.baseFontSize}px; /* Root Scaling */
+            margin: 0; padding: 5vw; line-height: 1.5; transition: 0.3s;
+        }
         .dark body { background: #0f172a; color: white; }
-        .item { margin-bottom: 2rem; }
-        .header { display: flex; justify-content: space-between; font-weight: bold; }
-        .role { font-weight: 600; font-size: 0.9em; margin-bottom: 5px; }
-        p { opacity: 0.8; font-size: 0.95em; line-height: 1.6; }
+        .name { font-size: 3.5em; font-weight: 900; margin: 0; color: var(--primary); line-height: 1; }
+        .title { font-size: 1.2em; opacity: 0.5; margin-bottom: 3em; text-transform: uppercase; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4em; }
+        .section-h { font-size: 0.7em; font-weight: 900; letter-spacing: 3px; border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 2em; opacity: 0.5; }
+        .item { margin-bottom: 2em; }
+        .header { display: flex; justify-content: space-between; align-items: baseline; font-size: 1.1em; font-weight: bold; }
+        .date { font-size: 0.6em; opacity: 0.5; font-family: monospace; }
+        .role { color: var(--primary); font-size: 0.9em; font-weight: 600; margin-bottom: 0.5em; }
+        .desc { font-size: 0.85em; opacity: 0.7; }
     </style>
 </head>
-<body class="p-8 md:p-20">
-    <div class="max-w-4xl mx-auto">
-        <header style="margin-bottom: 60px">
-            <h1 style="color:var(--primary); font-size: 3.5rem; font-weight: 900; margin:0">${config.name}</h1>
-            <p style="font-size: 1.5rem; opacity: 0.5">${config.role}</p>
-        </header>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px;">
-            <section>
-                <h2 style="border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 30px">EXPERIENCE</h2>
-                ${expHTML}
-            </section>
-            <section>
-                <h2 style="border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 30px">EDUCATION</h2>
-                ${eduHTML}
-            </section>
-        </div>
+<body>
+    <header>
+        <h1 class="name">${config.name}</h1>
+        <p class="title">${config.role}</p>
+    </header>
+    <div class="grid">
+        <section>
+            <div class="section-h">EXPERIENCE</div>
+            ${expHTML}
+        </section>
+        <section>
+            <div class="section-h">EDUCATION</div>
+            ${config.education.map(edu => `
+                <div class="item">
+                    <div class="header"><span>${edu.school}</span><span class="date">${edu.dates}</span></div>
+                    <div class="desc">${edu.degree}</div>
+                </div>
+            `).join('')}
+        </section>
     </div>
 </body>
 </html>`;
