@@ -5,6 +5,7 @@ import { generateTemplateHTML } from '../templates/TemplateEngine';
 export const exportProject = (config) => {
   const zip = new JSZip();
   const bodyContent = generateTemplateHTML(config);
+  const fontUrl = `https://fonts.googleapis.com/css2?family=${config.fontFamily.replace(/\s+/g, '+')}:wght@400;700;900&display=swap`;
 
   const htmlContent = `
 <!DOCTYPE html>
@@ -14,7 +15,7 @@ export const exportProject = (config) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${config.name} | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=${config.fontFamily.replace(' ', '+')}:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="${fontUrl}" rel="stylesheet">
     <script>
       tailwind.config = {
         darkMode: 'class',
@@ -22,7 +23,7 @@ export const exportProject = (config) => {
       }
     </script>
     <style>
-        body { font-family: '${config.fontFamily}', sans-serif; font-size: ${config.baseFontSize}px; margin: 0; }
+        body { margin: 0; padding: 0; }
     </style>
 </head>
 <body>${bodyContent}</body>
