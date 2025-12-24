@@ -23,13 +23,12 @@ const Editor = () => {
 
   return (
     <div className="w-full md:w-96 h-screen bg-white border-r p-6 overflow-y-auto custom-scrollbar flex flex-col shadow-2xl">
-      <h1 className="text-2xl font-black mb-6 tracking-tighter flex items-center gap-2">
-        <Type className="text-blue-600" size={24} /> 
-        PORTFOLIO SETUP
+      <h1 className="text-2xl font-black mb-6 tracking-tighter flex items-center gap-2 italic">
+        <Type className="text-blue-600" size={24} /> BUILDER
       </h1>
       
       <div className="space-y-8 flex-1">
-        {/* SECTION 1: DESIGN */}
+        {/* DESIGN SECTION */}
         <section className="space-y-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
           <label className="text-xs font-black uppercase text-gray-400">Tampilan & Font</label>
           <select className="w-full p-2 border rounded-md text-sm bg-white" value={config.templateId} onChange={(e) => updateConfig('templateId', e.target.value)}>
@@ -53,22 +52,22 @@ const Editor = () => {
           </div>
         </section>
 
-        {/* SECTION 2: BASIC INFO */}
+        {/* BASIC INFO */}
         <section className="space-y-3">
           <label className="text-xs font-black uppercase text-gray-400">Informasi Dasar</label>
           <input className="w-full p-2 border rounded text-sm" placeholder="Nama Lengkap" value={config.name} onChange={e => updateConfig('name', e.target.value)} />
           <input className="w-full p-2 border rounded text-sm" placeholder="Jabatan" value={config.role} onChange={e => updateConfig('role', e.target.value)} />
         </section>
 
-        {/* SECTION 3: EXPERIENCE */}
+        {/* EXPERIENCE */}
         <section>
           <div className="flex justify-between items-center mb-3">
             <label className="text-xs font-black uppercase text-gray-400 flex items-center gap-2"><Briefcase size={14} /> Pengalaman</label>
-            <button onClick={() => addItem('experiences', { id: Date.now(), company: '', role: '', dates: '', desc: '' })} className="p-1 bg-blue-600 text-white rounded"><Plus size={16}/></button>
+            <button onClick={() => addItem('experiences', { id: Date.now(), company: '', role: '', dates: '', desc: '' })} className="p-1 bg-blue-600 text-white rounded hover:bg-blue-700"><Plus size={16}/></button>
           </div>
           {config.experiences.map((exp) => (
             <div key={exp.id} className="p-3 border rounded-lg mb-4 bg-white relative group shadow-sm">
-              <button onClick={() => removeItem('experiences', exp.id)} className="absolute -top-2 -right-2 bg-white border text-red-500 p-1 rounded-full opacity-0 group-hover:opacity-100 transition"><Trash2 size={12}/></button>
+              <button onClick={() => removeItem('experiences', exp.id)} className="absolute -top-2 -right-2 bg-white border text-red-500 p-1 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition"><Trash2 size={12}/></button>
               <input className="w-full text-sm font-bold border-b mb-2 outline-none" placeholder="Perusahaan" value={exp.company} onChange={e => updateItemInArray('experiences', exp.id, 'company', e.target.value)} />
               <div className="flex gap-2 mb-2">
                 <input className="w-1/2 text-[10px] p-1 border rounded" placeholder="Role" value={exp.role} onChange={e => updateItemInArray('experiences', exp.id, 'role', e.target.value)} />
@@ -79,15 +78,15 @@ const Editor = () => {
           ))}
         </section>
 
-        {/* SECTION 4: PROJECTS */}
+        {/* PROJECTS */}
         <section>
           <div className="flex justify-between items-center mb-3">
             <label className="text-xs font-black uppercase text-gray-400 flex items-center gap-2"><FolderKanban size={14} /> Projects</label>
-            <button onClick={() => addItem('projects', { id: Date.now(), title: '', link: '', desc: '' })} className="p-1 bg-purple-600 text-white rounded"><Plus size={16}/></button>
+            <button onClick={() => addItem('projects', { id: Date.now(), title: '', link: '', desc: '' })} className="p-1 bg-purple-600 text-white rounded hover:bg-purple-700"><Plus size={16}/></button>
           </div>
           {config.projects.map((proj) => (
             <div key={proj.id} className="p-3 border rounded-lg mb-4 bg-white relative group shadow-sm">
-              <button onClick={() => removeItem('projects', proj.id)} className="absolute -top-2 -right-2 bg-white border text-red-500 p-1 rounded-full opacity-0 group-hover:opacity-100 transition"><Trash2 size={12}/></button>
+              <button onClick={() => removeItem('projects', proj.id)} className="absolute -top-2 -right-2 bg-white border text-red-500 p-1 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition"><Trash2 size={12}/></button>
               <input className="w-full text-sm font-bold border-b mb-2 outline-none" placeholder="Nama Project" value={proj.title} onChange={e => updateItemInArray('projects', proj.id, 'title', e.target.value)} />
               <input className="w-full text-[10px] p-1 border rounded mb-2" placeholder="Link" value={proj.link} onChange={e => updateItemInArray('projects', proj.id, 'link', e.target.value)} />
               <textarea className="w-full text-[10px] p-1 border rounded h-16" placeholder="Deskripsi..." value={proj.desc} onChange={e => updateItemInArray('projects', proj.id, 'desc', e.target.value)} />
@@ -95,11 +94,11 @@ const Editor = () => {
           ))}
         </section>
 
-        {/* SECTION 5: EDUCATION */}
+        {/* EDUCATION */}
         <section>
           <div className="flex justify-between items-center mb-3">
             <label className="text-xs font-black uppercase text-gray-400 flex items-center gap-2"><GraduationCap size={14} /> Pendidikan</label>
-            <button onClick={() => addItem('education', { id: Date.now(), school: '', degree: '', dates: '' })} className="p-1 bg-green-600 text-white rounded"><Plus size={16}/></button>
+            <button onClick={() => addItem('education', { id: Date.now(), school: '', degree: '', dates: '' })} className="p-1 bg-green-600 text-white rounded hover:bg-green-700"><Plus size={16}/></button>
           </div>
           {config.education.map((edu) => (
             <div key={edu.id} className="p-3 border rounded-lg mb-3 bg-white relative group">

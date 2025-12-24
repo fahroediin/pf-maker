@@ -7,7 +7,7 @@ const Preview = () => {
   const { config } = usePortfolio();
 
   useEffect(() => {
-    // Memuat Tailwind v3 CDN ke dalam Preview
+    // Memuat Tailwind v3 CDN ke dalam Preview agar 1:1
     const script = document.createElement('script');
     script.src = "https://cdn.tailwindcss.com";
     document.head.appendChild(script);
@@ -31,7 +31,6 @@ const Preview = () => {
           fontSize: `${config.baseFontSize}px`
         }}
       >
-        {/* Render HTML 1:1 dari Engine */}
         <div 
           dangerouslySetInnerHTML={{ __html: generateTemplateHTML(config) }} 
           className="min-h-[85vh]"
