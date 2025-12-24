@@ -1,17 +1,59 @@
-# React + Vite
+# 🚀 pf-maker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**pf-maker** adalah aplikasi berbasis web modular yang memungkinkan pengguna untuk membuat, menyesuaikan, dan mengekspor website portfolio profesional dalam hitungan detik. Dengan fitur **1:1 Parity**, apa yang Anda lihat di layar editor akan sama persis dengan file yang Anda unduh.
 
-Currently, two official plugins are available:
+## ✨ Fitur Utama
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   **4 Template Eksklusif**:
+    -   **Modern Minimalist**: Desain bersih dengan layout dua kolom yang elegan.
+    -   **Creative Side**: Layout asimetris dengan sidebar warna solid yang mencolok.
+    -   **Classic Corporate**: Tampilan formal dengan bingkai ganda dan tipografi serif.
+    -   **Developer Terminal**: Gaya konsol retro (hacker style) khusus untuk pengembang.
+-   **Kustomisasi Real-Time**:
+    -   **Warna Primer**: Ubah seluruh aksen warna website dengan color picker.
+    -   **Dark Mode**: Dukungan penuh mode gelap di semua template.
+    -   **Typography**: Pilih dari berbagai Google Fonts (Inter, Poppins, JetBrains Mono, dll).
+    -   **Font Scaling**: Slider untuk mengubah ukuran font seluruh elemen secara proporsional (menggunakan satuan `em`).
+-   **Manajemen Konten Dinamis**:
+    -   Input Informasi Dasar (Nama & Jabatan).
+    -   Sistem CRUD untuk **Pengalaman Kerja**, **Pendidikan**, dan **Proyek**.
+-   **Ekspor & Integrasi**:
+    -   **Download ZIP**: Ekstrak portfolio menjadi file `index.html` mandiri yang sudah menyertakan Tailwind CSS v3 via CDN.
+    -   **GitHub Ready**: Tautan langsung untuk membuat repositori baru di GitHub guna menghosting hasil karya.
 
-## React Compiler
+## 🛠️ Teknologi yang Digunakan
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-   **Frontend**: React.js (Vite)
+-   **Styling**: Tailwind CSS v3 (via CDN untuk sinkronisasi 1:1)
+-   **Icons**: Lucide React
+-   **State Management**: React Context API
+-   **File Handling**: JSZip & File-saver
 
-## Expanding the ESLint configuration
+## 📂 Struktur Folder Modular
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# pf-maker
+```text
+Directory structure:
+└── pf-maker/
+    ├── README.md
+    ├── eslint.config.js
+    ├── index.html
+    ├── package.json
+    ├── postcss.config.js
+    ├── tailwind.config.js
+    ├── vite.config.js
+    └── src/
+        ├── App.css
+        ├── App.jsx
+        ├── index.css
+        ├── main.jsx
+        ├── components/
+        │   └── Editor.jsx
+        ├── context/
+        │   └── PortfolioContext.jsx
+        ├── templates/
+        │   ├── PortfolioTemplates.jsx
+        │   ├── TemplateEngine.jsx
+        │   ├── TemplateList.jsx
+        │   └── TemplateRenderer.jsx
+        └── utils/
+            └── exporter.js
